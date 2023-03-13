@@ -1,6 +1,9 @@
 local M = {}
 
-function M.create_ef_resource(filename)
+local function create_ef_resource()
+  -- Prompt the user for a filename
+  local filename = vim.fn.input('Enter filename for SQL migration: ')
+
   -- Determine the project root directory
   local project_dir = vim.fn.fnamemodify(vim.fn.finddir('.csproj', ';'), ':h')
 
@@ -42,7 +45,8 @@ function M.create_ef_resource(filename)
   csproj_file:close()
 end
 
-vim.cmd('command! -nargs=1 CreateSqlMigrationFile lua require("myplugin.create_ef_resource").create_sql_migration_file(<f-args>)')
+function M.create_sql_migration_file()
+  create_ef_resource()
+end
 
 return M
-
