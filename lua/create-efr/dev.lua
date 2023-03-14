@@ -5,7 +5,9 @@ local function create_ef_resource()
   local filename = vim.fn.input('Enter filename for SQL migration: ')
 
   -- Determine the project root directory
-  local project_dir = vim.fn.fnamemodify(vim.fn.finddir('.csproj', ';'), ':h')
+  local csproj_file = vim.fn.findfile('*.csproj', ';')
+  local project_dir = vim.fn.fnamemodify(csproj_file, ':h')
+
 
   -- Create the migrations/files directory if it doesn't exist
   local migrations_dir = project_dir .. '/migrations/files'
@@ -17,11 +19,11 @@ local function create_ef_resource()
   vim.fn.writefile({}, sql_filepath)
 
   -- Add the SQL file to the csproj file
-  local csproj_path = project_dir .. '/project.csproj'
   local csproj_lines = {}
-  for line in io.lines(csproj_path) do
+  for line in io.lines(csproj_file) do
     table.insert(csproj_lines, line)
   end
+
 
   -- Find the last <ItemGroup> element in the csproj file
   local last_item_group_index = #csproj_lines
