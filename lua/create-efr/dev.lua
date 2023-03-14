@@ -19,6 +19,14 @@ local function create_ef_resource()
     parent_dir = vim.fn.fnamemodify(dir, ':h')
   end
 
+   -- Check if csproj file was found
+  if csproj_file == nil then
+    error('Could not find csproj file')
+  end
+
+  local project_dir = vim.fn.fnamemodify(csproj_file, ':h')
+
+
   -- Save logs to a file
   print('project_dir: ' .. tostring(project_dir))
   local log_file = io.open(project_dir .. '/create-ef-resource.log', 'a')
