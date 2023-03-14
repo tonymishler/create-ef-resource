@@ -6,7 +6,10 @@ local function create_ef_resource()
 
   -- Determine the project root directory
   local csproj_file = vim.fn.findfile('*.csproj', ';')
+  print('csproj_file:', csproj_file)
   local project_dir = vim.fn.fnamemodify(csproj_file, ':h')
+  print('project_dir:', project_dir)
+
 
 
   -- Create the migrations/files directory if it doesn't exist
