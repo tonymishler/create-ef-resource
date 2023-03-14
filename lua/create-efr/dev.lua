@@ -13,7 +13,7 @@ local function create_ef_resource()
   local count = 0
   while dir ~= nil and dir ~= '' and count < 2 do
     csproj_file = vim.fn.findfile('*.csproj', dir .. ';')
-    if csproj_file ~= nil then
+    if csproj_file ~= '' then
       log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
       log_file:write('breaking' .. '\n')
       break
