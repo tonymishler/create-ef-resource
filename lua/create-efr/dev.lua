@@ -25,6 +25,7 @@ local function create_ef_resource()
   local project_dir = vim.fn.fnamemodify(csproj_file, ':h')
   print('project_dir:', project_dir)
 
+  print('dir:', dir)
   -- Create the migrations/files directory if it doesn't exist
   local migrations_dir = project_dir .. '/migrations/files'
   vim.fn.mkdir(migrations_dir, 'p')
