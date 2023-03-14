@@ -7,6 +7,8 @@ local function create_ef_resource()
   -- Determine the project root directory
   local csproj_file = nil
   local dir = vim.fn.getcwd()
+  local log_file = io.open(dir .. '/create-ef-resource.log', 'a')
+  log_file:write('dir: ' .. tostring(csproj_file) .. '\n')
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
   local count = 0
   while dir ~= nil and count < 2 do
@@ -29,7 +31,6 @@ local function create_ef_resource()
 
   -- Save logs to a file
   print('project_dir: ' .. tostring(project_dir))
-  local log_file = io.open(project_dir .. '/create-ef-resource.log', 'a')
   log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
   log_file:write('project_dir: ' .. tostring(project_dir) .. '\n')
 
