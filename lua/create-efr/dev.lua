@@ -11,7 +11,7 @@ local function create_ef_resource()
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
   local count = 0
   while dir ~= nil and dir ~= '' and count <= 2 do
-    csproj_file = vim.fn.findfile('*.csproj', dir .. ';')
+    csproj_file = vim.fn.fhttps://neovim.io/doc/user/lua.htmlindfile('*.csproj', dir .. ';')
     log_file:write('dir: ' .. tostring(dir) .. '\n')
     if csproj_file ~= '' then
       log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
@@ -24,7 +24,7 @@ local function create_ef_resource()
   end
 
    -- Check if csproj file was found
-  if csproj_file == nil then
+  if csproj_file == nil or csproj_file == '' then
     error('Could not find csproj file')
   end
 
