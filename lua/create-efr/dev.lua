@@ -8,7 +8,7 @@ local function create_ef_resource()
   local csproj_file = nil
   local dir = vim.fn.getcwd()
   local log_file = io.open(dir .. '/create-ef-resource.log', 'a')
-  log_file:write('dir: ' .. tostring(csproj_file) .. '\n')
+  log_file:write('dir: ' .. tostring(dir) .. '\n')
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
   local count = 0
   while dir ~= nil and count < 2 do
