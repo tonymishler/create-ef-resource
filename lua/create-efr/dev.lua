@@ -42,10 +42,11 @@ local function create_ef_resource()
   table.insert(csproj_lines, last_item_group_index + 1, update_element)
 
   -- Write the modified csproj file back to disk
-  local csproj_file = io.open(csproj_path, 'w')
+  local csproj_filename = vim.fn.fnamemodify(csproj_file, ':t')
+  local new_csproj_path = project_dir .. '/' .. csproj_filename
+  local csproj_file = io.open(new_csproj_path, 'w')
   csproj_file:write(table.concat(csproj_lines, '\n'))
-  csproj_file:close()
-end
+  csproj_file:close()end
 
 function M.create_sql_migration_file()
   create_ef_resource()
