@@ -7,10 +7,7 @@ local function create_ef_resource()
   -- Determine the project root directory
   local csproj_file = nil
   local dir = vim.fn.getcwd()
-
-  print('dir:', dir)
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
-  
   local count = 0
   while dir ~= nil and count < 2 do
     csproj_file = vim.fn.findfile('*.csproj', dir .. ';')
@@ -21,12 +18,12 @@ local function create_ef_resource()
     dir = parent_dir
     parent_dir = vim.fn.fnamemodify(dir, ':h')
   end
-  print('csproj_file:', csproj_file)
-  local project_dir = vim.fn.fnamemodify(csproj_file, ':h')
-  print('project_dir:', project_dir)
 
-  print('dir:', dir)
-  print('csproj_file:', csproj_file)
+  -- Save logs to a file
+  local log_file = io.open(project_dir .. '/create-ef-resource.log', 'a')
+  log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
+  log_file:write('project_dir: ' .. tostring(project_dir) .. '\n')
+
   -- Create the migrations/files directory if it doesn't exist
   local migrations_dir = project_dir .. '/migrations/files'
   vim.fn.mkdir(migrations_dir, 'p')
@@ -64,6 +61,10 @@ local function create_ef_resource()
   local csproj_file = io.open(new_csproj_path, 'w')
   csproj_file:write(table.concat(csproj_lines, '\n'))
   csproj_file:close()
+
+  -- Close the log file
+  log_file:write('Finished creating EF resource\n\n')
+  log_file:close()
 end
 
 function M.create_sql_migration_file()
@@ -71,4 +72,3 @@ function M.create_sql_migration_file()
 end
 
 return M
-
