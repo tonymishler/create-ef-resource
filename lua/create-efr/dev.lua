@@ -6,7 +6,7 @@ local function create_ef_resource()
 
   -- Determine the project root directory
   local csproj_file = nil
-  local dir = vim.fn.getcwd()
+  local dir = vim.fn.fnamemodify(vim.fn.bufname('%'), ':h')
   local log_file = io.open(dir .. '/create-ef-resource.log', 'a')
   log_file:write('dir: ' .. tostring(dir) .. '\n')
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
