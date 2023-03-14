@@ -24,7 +24,7 @@ local function create_ef_resource()
   end
 
    -- Check if csproj file was found
-  if csproj_file == nil or csproj_file == '' then
+  if csproj_file == nil then
     error('Could not find csproj file')
   end
 
