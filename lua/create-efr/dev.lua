@@ -20,6 +20,7 @@ local function create_ef_resource()
   end
 
   -- Save logs to a file
+  print('project_dir: ' .. tostring(project_dir))
   local log_file = io.open(project_dir .. '/create-ef-resource.log', 'a')
   log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
   log_file:write('project_dir: ' .. tostring(project_dir) .. '\n')
