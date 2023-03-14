@@ -8,11 +8,11 @@ local function create_ef_resource()
   local csproj_file = nil
   local dir = vim.fn.fnamemodify(vim.fn.bufname('%'), ':h')
   local log_file = io.open(dir .. '/create-ef-resource.log', 'a')
-  log_file:write('dir: ' .. tostring(dir) .. '\n')
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
   local count = 0
   while dir ~= nil and dir ~= '' and count < 2 do
     csproj_file = vim.fn.findfile('*.csproj', dir .. ';')
+    log_file:write('dir: ' .. tostring(dir) .. '\n')
     if csproj_file ~= '' then
       log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
       log_file:write('breaking' .. '\n')
