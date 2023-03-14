@@ -42,6 +42,10 @@ local function create_ef_resource()
   local sql_filepath = migrations_dir .. '/' .. sql_filename
   vim.fn.writefile({}, sql_filepath)
 
+
+  -- Close the log file
+  log_file:write('Finished creating EF resource\n\n')
+  log_file:close()
   -- Add the SQL file to the csproj file
   local csproj_lines = {}
   for line in io.lines(csproj_file) do
@@ -71,9 +75,6 @@ local function create_ef_resource()
   csproj_file:write(table.concat(csproj_lines, '\n'))
   csproj_file:close()
 
-  -- Close the log file
-  log_file:write('Finished creating EF resource\n\n')
-  log_file:close()
 end
 
 function M.create_sql_migration_file()
