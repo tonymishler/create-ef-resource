@@ -1,7 +1,7 @@
 local M = {}
 
 local function create_ef_resource()
-  -- Prompt the user for a filename
+-- Prompt the user for a filename
   local filename = vim.fn.input('Enter filename for SQL migration: ')
 
   -- Determine the project root directory
@@ -11,7 +11,7 @@ local function create_ef_resource()
   local parent_dir = vim.fn.fnamemodify(dir, ':h')
   local count = 0
   while dir ~= nil and dir ~= '' and count <= 2 do
-    csproj_file = vim.fnfile('*.csproj', dir .. ';')
+    csproj_file = vim.fn.glob(dir .. '/*.csproj') -- Use glob instead of fnfile
     log_file:write('dir: ' .. tostring(dir) .. '\n')
     if csproj_file ~= '' then
       log_file:write('csproj_file: ' .. tostring(csproj_file) .. '\n')
@@ -23,7 +23,7 @@ local function create_ef_resource()
     parent_dir = vim.fn.fnamemodify(dir, ':h')
   end
 
-   -- Check if csproj file was found
+  -- Check if csproj file was found
   if csproj_file == nil or csproj_file == '' then
     error('Could not find csproj file')
   end
