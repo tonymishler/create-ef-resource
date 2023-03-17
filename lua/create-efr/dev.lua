@@ -4,6 +4,8 @@ local function create_ef_resource()
 -- Prompt the user for a filename
   local filename = vim.fn.input('Enter filename for SQL migration: ')
 
+  --replace the file name input with pulling the file names directly from current migration file in buffer
+
   -- Determine the project root directory
   local csproj_file = nil
   local dir = vim.fn.fnamemodify(vim.fn.bufname('%'), ':h')
